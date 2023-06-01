@@ -9,10 +9,8 @@ import mjolnir from '../../resources/img/mjolnir.png';
 const RandomChar = () => {
 
     const [char, setChar] = useState({});
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
 
-    const marvelServices = new MarvelService();
+    const {loading, error, getCharacter, clearError} = useMarvelService();
 
     useEffect(() => {
         updateChar();
@@ -24,31 +22,16 @@ const RandomChar = () => {
     }, [])
 
 
-    // componentWillUnmount() {
-    //     clearInterval(this.timerId)
-    // }
-
 
     const onCharLoaded = (char) => {
         setChar(char);
-        setLoading(false)
-    }
-
-    const onError = () => {
-        setError(true);
-        setLoading(false);
-    }
-
-    const onCharLoading = () => {
-        setLoading(true);
     }
 
     const updateChar = () => {
+        clearError();
         const id = Math.floor(Math.random() * (1011400 - 1011000) + 1011000);
-        onCharLoading();
-        marvelServices.getCharacter(id)
+        getCharacter(id)
         .then(onCharLoaded)
-        .catch(onError)
         // marvelServices.getAllCharacters().then(res => console.log(res));
     }
 
