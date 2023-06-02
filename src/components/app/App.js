@@ -1,4 +1,4 @@
-import { ComicsPage, MainPage, Page404 } from "../pages";
+import { ComicsPage, MainPage, Page404, SingleComicPage } from "../pages";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
 import AppHeader from "../appHeader/AppHeader";
 
@@ -16,7 +16,10 @@ const App = () => {
                     </Route>
                     <Route exact path='/comics'>
                         <ComicsPage/>
-                    </Route>                    
+                    </Route>
+                    <Route exact path='/comics/:comicId'>
+                        <SingleComicPage/>
+                    </Route>                   
                     <Route path='*'>
                         <Page404/>
                     </Route>
