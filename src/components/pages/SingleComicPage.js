@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom'
+import { HelmetProvider, Helmet } from "react-helmet-async";
+
 import ErrorMessage from '../errorMessage/ErrorMessage';
 import Spinner from '../spinner/Spinner';
 import useMarvelService from '../../services/MarvelService';
@@ -33,12 +35,24 @@ const SingleComicPage = () => {
 
 
     return (
+        
+        <HelmetProvider>
+            <Helmet>
+                <meta
+                    name="description"
+                    content="A page with one comic"
+                    />
+                <title>Page</title>
+            </Helmet>
         <>
-        <AppBanner/>
-        {errorMessage}
-        {spinner}
-        {content}
+            <AppBanner/>
+            {errorMessage}
+            {spinner}
+            {content}
         </>
+        </HelmetProvider>
+        
+        
     )
 }
 
